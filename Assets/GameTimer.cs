@@ -13,6 +13,8 @@ namespace DefaultNamespace
         public Text goScoreText;
         public Text goNameText;
         public Text go;
+        public Text hs;
+        public Text newHS;
 
         public static GameTimer Instance;
         public GameObject image;
@@ -36,6 +38,19 @@ namespace DefaultNamespace
                 go.gameObject.SetActive(true);
                 goNameText.gameObject.SetActive(true);
                 goNameText.text = "Name: " + PlayerPrefs.GetString("Name");
+                
+                int highScore = PlayerPrefs.GetInt("HighScore");
+                if (score > highScore)
+                {
+                    PlayerPrefs.SetInt("HighScore", score);
+                    newHS.gameObject.SetActive(true);
+                }
+                else
+                {
+                    hs.gameObject.SetActive(true);
+                    hs.text = "High Score: " + highScore;
+                }
+
                 image.SetActive(true);
             }
         }
